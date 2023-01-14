@@ -5,7 +5,7 @@ import java.io.*;
 
 public class PasswordDAL 
 {
-    private static ArrayList<Password> listaPW = new ArrayList<Password>();
+    private static ArrayList<Password> listaPW = new ArrayList<>();
     private static String rutaDir = "C:/GPWFLS";
     private static String ruta = "C:/GPWFLS/infopw.bin";
     
