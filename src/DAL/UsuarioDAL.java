@@ -22,16 +22,27 @@ public class UsuarioDAL
         }
         return retVal;
     }
-    public boolean Login(Usuario usuario, String contraIng)
+    public boolean Login(Usuario usuario, String contraIng) throws Exception
     {
         boolean retVal = true;
         EncriptDAL encript = new EncriptDAL();
         String contra;
+        File archivo = new File(rutaU);
         if (Buscar(usuario.GetDescripcion()).GetId()!=-1)
         {
             contra = listaPW.get(Integer.parseInt(usuario.GetPasswd()));
             contra = encript.DesencriptarContra(contra);
-            if (!contraIng.equals(contra))
+            if (contraIng.equals(contra))
+            {
+                
+                if (!archivo.exists())
+                    archivo.createNewFile();
+                
+                ObjectOutputStream escribiendoArchivo = new ObjectOutputStream (new FileOutputStream(rutaU));
+                escribiendoArchivo.writeObject(usuario);
+                escribiendoArchivo.close();
+            }
+            else
             {
                 retVal = false;
             }
