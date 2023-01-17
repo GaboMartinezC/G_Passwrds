@@ -11,20 +11,6 @@ public class UsuarioDAL
     private String rutaU = "C:/GPWFLS/logged.bin";
     private String ruta = "C:/GPWFLS/infoUsuario.bin";
     
-    private String DesencriptarContra(String contra)
-    {
-        char arr[] = contra.toCharArray();
-        for (int i = 0; i<arr.length; i++)
-            arr[i] = (char)(arr[i]/(char)7);
-        return String.valueOf(arr);
-    }
-    private String HashContra(String contra)
-    {
-        char arr[] = contra.toCharArray();
-        for (int i = 0; i<arr.length; i++)
-            arr[i] = (char)(arr[i]*(char)7);
-        return String.valueOf(arr);
-    }
     public Usuario Buscar(String descripcion)
     {
         Usuario retVal = new Usuario();
@@ -39,11 +25,12 @@ public class UsuarioDAL
     public boolean Login(Usuario usuario, String contraIng)
     {
         boolean retVal = true;
+        EncriptDAL encript = new EncriptDAL();
         String contra;
         if (Buscar(usuario.GetDescripcion()).GetId()!=-1)
         {
             contra = listaPW.get(Integer.parseInt(usuario.GetPasswd()));
-            contra = DesencriptarContra(contra);
+            contra = encript.DesencriptarContra(contra);
             if (!contraIng.equals(contra))
             {
                 retVal = false;
@@ -71,6 +58,7 @@ public class UsuarioDAL
     {
         String contra;
         boolean retVal = true;
+        EncriptDAL encript = new EncriptDAL();
         for (Usuario u: listaUS)
         {
             if (u.GetDescripcion().equals(usuario.GetDescripcion()))
@@ -80,7 +68,7 @@ public class UsuarioDAL
         {
             ruta = "psw"+listaPW.size()+".bin";
             usuario.SetId(listaUS.size()+1);
-            contra = HashContra(usuario.GetPasswd());
+            contra = encript.HashContra(usuario.GetPasswd());
             usuario.SetPasswd(String.valueOf(listaPW.size()));
             listaPW.add(contra);
             EscribirPW();
