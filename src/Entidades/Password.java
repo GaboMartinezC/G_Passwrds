@@ -40,4 +40,5 @@ public class Password implements Serializable
     {
         this.informacion = informacion;
     }
+    
 }

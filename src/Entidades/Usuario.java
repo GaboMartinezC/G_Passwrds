@@ -31,6 +31,4 @@ public class Usuario implements Serializable
     {
         this.passwd = passwd;
     }
-    
-    
 }
