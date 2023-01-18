@@ -11,6 +11,25 @@ public class UsuarioDAL
     private String rutaU = "C:/GPWFLS/logged.bin";
     private String ruta = "C:/GPWFLS/infoUsuario.bin";
     
+    public void Unlog() throws Exception
+    {
+        Usuario usuario = new Usuario();
+        usuario.SetId(-1);
+        ObjectOutputStream escribiendoArchivo = new ObjectOutputStream (new FileOutputStream(rutaU));
+        escribiendoArchivo.writeObject(usuario);
+        escribiendoArchivo.close();
+    }
+    public boolean isLoged() throws Exception
+    {
+        boolean retVal = false;
+        Usuario usuario = new Usuario();
+        ObjectInputStream leyendoArchivo = new ObjectInputStream (new FileInputStream(rutaU));
+        usuario = (Usuario) leyendoArchivo.readObject();
+        leyendoArchivo.close();
+        if (usuario.GetId()==-1)
+            retVal = true;
+        return retVal;
+    }
     public Usuario Buscar(String descripcion)
     {
         Usuario retVal = new Usuario();
