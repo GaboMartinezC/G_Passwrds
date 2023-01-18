@@ -21,13 +21,12 @@ public class UsuarioDAL
     }
     public boolean isLoged() throws Exception
     {
-        boolean retVal = false;
-        Usuario usuario = new Usuario();
+        boolean retVal = true;
         ObjectInputStream leyendoArchivo = new ObjectInputStream (new FileInputStream(rutaU));
-        usuario = (Usuario) leyendoArchivo.readObject();
+        Usuario usuario = (Usuario) leyendoArchivo.readObject();
         leyendoArchivo.close();
         if (usuario.GetId()==-1)
-            retVal = true;
+            retVal = false;
         return retVal;
     }
     public Usuario Buscar(String descripcion)
@@ -144,12 +143,19 @@ public class UsuarioDAL
     private void Leer() throws Exception
     {
         File archivo = new File(ruta);
+        File rutau = new File(rutaU);
+        Usuario usuario = new Usuario();
+        usuario.SetId(-1);
         if (!archivo.exists())
         {
             ObjectOutputStream escribiendoArchivo = new ObjectOutputStream (new FileOutputStream(ruta));
+            ObjectOutputStream escribiendoArchivoU = new ObjectOutputStream (new FileOutputStream(rutaU));
             archivo.createNewFile();
             escribiendoArchivo.writeObject(listaUS);
             escribiendoArchivo.close();
+            rutau.createNewFile();
+            escribiendoArchivoU.writeObject(usuario);
+            escribiendoArchivoU.close();
         }
         ObjectInputStream leyendoArchivo = new ObjectInputStream (new FileInputStream(ruta));
         listaUS = (ArrayList<Usuario>) leyendoArchivo.readObject();
