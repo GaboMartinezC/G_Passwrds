@@ -75,6 +75,19 @@ public class UsuarioDAL
     {
         return listaUS;
     }
+    public boolean Actualizar(Usuario usuario) throws Exception
+    {
+        boolean retVal = false;
+        for (Usuario u: listaUS)
+        {
+            if (u.GetId()==usuario.GetId())
+            {
+                u = usuario;
+                retVal = true;
+            }
+        }
+        return retVal;
+    }
     public void Borrar(Usuario usuario) throws Exception
     {
         for (int i = 0; i<listaUS.size(); i++)

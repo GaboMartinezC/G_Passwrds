@@ -1,9 +1,8 @@
 package GUI;
-import java.util.ArrayList;
 import BL.*;
+import Entidades.Usuario;
 import javax.swing.*;
 import java.awt.event.*;
-import java.awt.Font;
 
 public class Login extends JFrame implements ActionListener
 {
@@ -16,6 +15,7 @@ public class Login extends JFrame implements ActionListener
     private JPanel jPanel1;
     private JPasswordField jPasswordField1;
     private JTextField jTextField1;
+    private static Login log = new Login();
     
     public Login()
     {
@@ -125,19 +125,44 @@ public class Login extends JFrame implements ActionListener
     public void actionPerformed(ActionEvent e)
     {
         if (e.getSource()==jButton2)
-        {
-            JOptionPane.showMessageDialog(null, "Hola");
-        }
+            Entrar();
         if (e.getSource()==jButton1)
-        {
-            JOptionPane.showMessageDialog(null, "Hola");
-        }
+            Limpiar();
+    }
+    
+    private void Entrar()
+    {
+       try
+       {
+            Usuario usuario = new Usuario();
+            UsuarioBL bl = new UsuarioBL();
+            usuario.SetDescripcion(jTextField1.getText());
+            if (bl.Login(usuario, String.valueOf(jPasswordField1.getPassword())))
+            {
+                log.setVisible(false);
+                //Cargar
+            }
+            else
+            {
+                usuario.SetPasswd(String.valueOf(jPasswordField1.getPassword()));
+                MensajeLog.Cargar(usuario);
+            }
+       }
+       catch (Exception e)
+       {
+           e.printStackTrace();
+       }
+       
+    }
+    private void Limpiar()
+    {
+        jPasswordField1.setText("");
+        jTextField1.setText("");
     }
     
     public static void Cargar()
     {
-        Login log = new Login();
-        log.setBounds(0,0,820,545);
+        log.setBounds(0,0,830,545);
         log.setResizable(false);
         log.setLocationRelativeTo(null);
         log.setVisible(true);

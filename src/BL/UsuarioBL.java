@@ -17,8 +17,11 @@ public class UsuarioBL
     }
     public boolean Login (Usuario usuario, String contraIng) throws Exception
     {
+        boolean retVal = false;
         UsuarioDAL dal = new UsuarioDAL();
-        return dal.Login(usuario, contraIng);
+        if (dal.Buscar(usuario.GetDescripcion()).GetId()!=-1)
+            retVal = dal.Login(usuario, contraIng);
+        return retVal;
     }
     public Usuario Buscar(String descripcion)
     {
@@ -35,9 +38,31 @@ public class UsuarioBL
        UsuarioDAL dal = new UsuarioDAL();
        dal.Borrar(usuario);
     }
+    public boolean Actualizar (Usuario usuario) throws Exception
+    {
+        boolean retVal = true;
+        UsuarioDAL dal = new UsuarioDAL();
+        if (IsEmpty(usuario))
+            retVal = false;
+        else
+            retVal = dal.Actualizar(usuario);
+        return retVal;
+    }
     public boolean Ingresar(Usuario usuario) throws Exception
     {
+        boolean retVal = true;
         UsuarioDAL dal = new UsuarioDAL();
-        return dal.Ingresar(usuario);
+        if (IsEmpty(usuario))
+            retVal = false;
+        else
+            retVal = dal.Ingresar(usuario);
+        return retVal;
+    }
+    private boolean IsEmpty(Usuario usuario)
+    {
+        boolean retVal = false;
+        if ((usuario.GetDescripcion().equals(""))||(usuario.GetPasswd().equals("")))
+            retVal = true;
+        return retVal;
     }
 }
