@@ -14,7 +14,7 @@ public class Inicio
             if (!bl.isLoged())
                 Login.Cargar();
             else
-                JOptionPane.showMessageDialog(null, "Is loged");
+                Principal.Cargar();
         }
         catch(Exception e)
         {

@@ -140,8 +140,7 @@ public class Login extends JFrame implements ActionListener
             if (bl.Login(usuario, String.valueOf(jPasswordField1.getPassword())))
             {
                 log.setVisible(false);
-                JOptionPane.showMessageDialog(null, "Loged");
-                //Cargar
+                Principal.Cargar();
             }
             else
             {
