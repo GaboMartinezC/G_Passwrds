@@ -29,14 +29,14 @@ public class MensajeLog extends JFrame implements ActionListener
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("No encontrado ¿Desea crear otra cuenta?");
 
-        jButton1.setBackground(new java.awt.Color(255, 153, 153));
+        jButton1.setBackground(new java.awt.Color(204, 255, 204));
         jButton1.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         jButton1.setForeground(new java.awt.Color(0, 0, 0));
         jButton1.setText("SI");
         jButton1.setBorder(null);
         jButton1.addActionListener(this);
 
-        jButton2.setBackground(new java.awt.Color(204, 255, 204));
+        jButton2.setBackground(new java.awt.Color(255, 153, 153));
         jButton2.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         jButton2.setForeground(new java.awt.Color(0, 0, 0));
         jButton2.setText("NO");
@@ -105,7 +105,7 @@ public class MensajeLog extends JFrame implements ActionListener
         }
         catch (Exception e)
         {
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Ha habido un problema");
         }
     }
     public static void Cargar(Usuario usuario)

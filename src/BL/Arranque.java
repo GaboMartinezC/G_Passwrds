@@ -11,7 +11,6 @@ public class Arranque
             UsuarioDAL dal2 = new UsuarioDAL();
             dal1.AccesoLeer();
             dal2.AccesoLeer();
-            dal2.AccesoPW();
         }
         catch (Exception e)
         {

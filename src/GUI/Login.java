@@ -140,6 +140,7 @@ public class Login extends JFrame implements ActionListener
             if (bl.Login(usuario, String.valueOf(jPasswordField1.getPassword())))
             {
                 log.setVisible(false);
+                JOptionPane.showMessageDialog(null, "Loged");
                 //Cargar
             }
             else
@@ -150,7 +151,7 @@ public class Login extends JFrame implements ActionListener
        }
        catch (Exception e)
        {
-           e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un problema");
        }
        
     }
