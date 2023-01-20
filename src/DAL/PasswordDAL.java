@@ -25,37 +25,22 @@ public class PasswordDAL
         }
         return retVal;
     }
-    public ArrayList<Password> BuscarTodos()
+    public ArrayList<Password> BuscarTodos(int id)
     {
-        return listaPW;
-    }
-    public String Buscar (Password password)
-    {
-        String retVal = "";
+        ArrayList<Password> retVal = new ArrayList<>();
         for (Password p: listaPW)
         {
-            if (p.GetId()==password.GetId())
-            {
-                retVal = p.GetInformacion();
-                retVal =  encript.DesencriptarContra(retVal);
-            }
+            if (p.GetUsuario()==id)
+                retVal.add(p);
         }
         return retVal;
     }
-    public boolean Ingresar(Password password) throws Exception
+    public void Ingresar(Password password) throws Exception
     {
-        boolean retVal = true;
-        if (!password.GetInformacion().equals(""))
-        {
-            String contra = encript.HashContra(password.GetInformacion());
-            password.SetInformacion(contra);
-            listaPW.add(password);
-            Escribir();
-        }
-        else
-            retVal = false;
-        return retVal;
-        
+        String contra = encript.HashContra(password.GetInformacion());
+        password.SetInformacion(contra);
+        listaPW.add(password);
+        Escribir();   
     }
     private void Escribir() throws Exception
     {

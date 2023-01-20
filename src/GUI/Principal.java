@@ -2,6 +2,8 @@ package GUI;
 import javax.swing.*;
 import java.awt.event.*;
 import BL.*;
+import Entidades.Password;
+import java.util.ArrayList;
 
 public class Principal extends JFrame implements ActionListener
 {
@@ -12,9 +14,12 @@ public class Principal extends JFrame implements ActionListener
     private JLabel jLabel2;
     private JPanel jPanel1;
     private JButton jButton2;
+    private JTable tabla;
+    private JScrollPane jspContenedor = new JScrollPane();
 
     public Principal()
     {
+        //Codigo generado por el IDE
         jPanel1 = new JPanel();
         jButton2 = new JButton();
         jButton1 = new JButton();
@@ -88,8 +93,40 @@ public class Principal extends JFrame implements ActionListener
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-
+        //Demás codigo
+        try
+        {
+            UsuarioBL blU = new UsuarioBL();
+            PasswordBL bl = new PasswordBL();
+            int id = blU.IdUsuario();
+            ArrayList<Password> lista = bl.BuscarTodos(id);
+            String[] columnas = {"ID", "Servicio", "Contraseña"};
+            Object datos[][] = LlenarMatriz(lista);
+            tabla = new JTable (datos, columnas);
+            jspContenedor = new JScrollPane(tabla);
+            tabla.setFillsViewportHeight(true);
+            jspContenedor.setBounds(0, 0, 400, 200);
+            add(jspContenedor);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
         pack();
+        
+    }
+    private Object[][] LlenarMatriz(ArrayList<Password> lista)
+    {
+        int contador = 0;
+        Object [][] datos = new Object [lista.size()][3];
+        for (Password p: lista)
+        {
+            datos [contador][0] = p.GetId();
+            datos [contador][1] = p.GetDescripcionServicio();
+            datos [contador][2] = "••••••••••••••••••";
+            contador++;
+        }
+        return datos;
     }
     private String GetUsuario()
     {
@@ -118,6 +155,11 @@ public class Principal extends JFrame implements ActionListener
     }
     public void actionPerformed(ActionEvent e)
     {
+        if (e.getSource()==jButton1)
+        {
+            Ingreso.Cargar();
+            pri.setVisible(false);
+        }
         if (e.getSource()==jButton2)
             Unlog();
     }

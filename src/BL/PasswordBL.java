@@ -5,24 +5,19 @@ import java.util.ArrayList;
 
 public class PasswordBL 
 {
-    public String Buscar (Password password)
+    public void Ingresar (Password password) throws Exception
     {
         PasswordDAL dal = new PasswordDAL();
-        return dal.Buscar(password);
-    }
-    public boolean Ingresar (Password password) throws Exception
-    {
-        PasswordDAL dal = new PasswordDAL();
-        return dal.Ingresar(password);
+        dal.Ingresar(password);
     }
     public boolean Actualizar(Password password) throws Exception
     {
         PasswordDAL dal = new PasswordDAL();
         return dal.Actualizar(password);
     }
-    public ArrayList<Password> BuscarTodos()
+    public ArrayList<Password> BuscarTodos(int id)
     {
         PasswordDAL dal = new PasswordDAL();
-        return dal.BuscarTodos();
+        return dal.BuscarTodos(id);
     }
 }

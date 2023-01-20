@@ -17,6 +17,10 @@ public class UsuarioDAL
         leyendoArchivo.close();
         return usuario;
     }
+    public int IdUsuario() throws Exception
+    {
+        return this.PrivLoged().GetId();
+    }
     public Usuario Loged() throws Exception
     {
         return this.PrivLoged();

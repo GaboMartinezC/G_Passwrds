@@ -4,6 +4,11 @@ import Entidades.*;
 
 public class UsuarioBL 
 {
+    public int IdUsuario() throws Exception
+    {
+        UsuarioDAL dal = new UsuarioDAL();
+        return dal.IdUsuario();
+    }
     public Usuario Loged() throws Exception
     {
         UsuarioDAL dal = new UsuarioDAL();
