@@ -10,6 +10,20 @@ public class PasswordDAL
     private static String ruta = "C:/GPWFLS/infopw.bin";
     private static EncriptDAL encript = new EncriptDAL();
     
+    public boolean Actualizar(Password password) throws Exception
+    {
+        boolean retVal = false;
+        for (Password p: listaPW)
+        {
+            if (p.GetId()==password.GetId())
+            {
+                p.SetDescripcionServicio(password.GetDescripcionServicio());
+                p.SetInformacion(encript.HashContra(password.GetInformacion()));
+                Escribir();
+            }
+        }
+        return retVal;
+    }
     public String Desencriptar(int id)
     {
         String retVal = "", contraEncriptada = "";

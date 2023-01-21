@@ -263,7 +263,17 @@ public class Principal extends JFrame implements ActionListener
         if (e.getSource()==jButton4)
             Borrar();
         if (e.getSource()==jButton5)
-            JOptionPane.showMessageDialog(null, "No disponible la modificacion");
+        {
+            try
+            {
+                Actualizar.Cargar(Integer.parseInt(jTextField1.getText()));
+            }
+            catch(Exception ex)
+            {
+                JOptionPane.showMessageDialog(null, "No hay informacion");
+            }
+        }
+            
     }
     public static void Cargar()
     {
