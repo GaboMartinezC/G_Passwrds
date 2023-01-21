@@ -10,6 +10,17 @@ public class PasswordDAL
     private static String ruta = "C:/GPWFLS/infopw.bin";
     private static EncriptDAL encript = new EncriptDAL();
     
+    public String Desencriptar(int id)
+    {
+        String retVal = "", contraEncriptada = "";
+        for (Password p: listaPW)
+        {
+            if (p.GetId()==id)
+                contraEncriptada = p.GetInformacion();
+        }
+        retVal = encript.DesencriptarContra(contraEncriptada);
+        return retVal;
+    }
     public ArrayList<Password> BuscarTodos(int id)
     {
         ArrayList<Password> retVal = new ArrayList<>();
@@ -17,6 +28,20 @@ public class PasswordDAL
         {
             if (p.GetUsuario()==id)
                 retVal.add(p);
+        }
+        return retVal;
+    }
+    public boolean Borrar(int id) throws Exception
+    {
+        boolean retVal = false;
+        for (int i = 0; i<listaPW.size();i++)
+        {
+            if (listaPW.get(i).GetId()==id)
+            {
+                retVal = true;
+                listaPW.remove(i);
+                Escribir();
+            }
         }
         return retVal;
     }

@@ -5,6 +5,16 @@ import java.util.ArrayList;
 
 public class PasswordBL 
 {
+    public boolean Borrar(int id) throws Exception
+    {
+        PasswordDAL dal = new PasswordDAL();
+        return dal.Borrar(id);
+    }
+    public String Desencriptar(int id)
+    {
+        PasswordDAL dal = new PasswordDAL();
+        return dal.Desencriptar(id);
+    }
     public void Ingresar (Password password) throws Exception
     {
         PasswordDAL dal = new PasswordDAL();
