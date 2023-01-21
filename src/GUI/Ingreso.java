@@ -160,7 +160,7 @@ public class Ingreso extends JFrame implements ActionListener
     {
         try
         {
-            int usuario = -1;
+            int usuario;
             UsuarioBL blU = new UsuarioBL();
             Password password = new Password();
             String contra1 = String.valueOf(jPasswordField1.getPassword());
@@ -172,9 +172,10 @@ public class Ingreso extends JFrame implements ActionListener
                 else
                 {
                     usuario = blU.IdUsuario();
-                    password.SetId(usuario);
+                    password.SetUsuario(usuario);
                     password.SetDescripcionServicio(jTextField1.getText());
                     password.SetInformacion(contra2);
+                    bl.Ingresar(password);
                     JOptionPane.showMessageDialog(null, "Ingreso correcto");
                     Limpiar();
                 }

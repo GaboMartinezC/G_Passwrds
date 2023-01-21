@@ -10,11 +10,6 @@ public class PasswordBL
         PasswordDAL dal = new PasswordDAL();
         dal.Ingresar(password);
     }
-    public boolean Actualizar(Password password) throws Exception
-    {
-        PasswordDAL dal = new PasswordDAL();
-        return dal.Actualizar(password);
-    }
     public ArrayList<Password> BuscarTodos(int id)
     {
         PasswordDAL dal = new PasswordDAL();

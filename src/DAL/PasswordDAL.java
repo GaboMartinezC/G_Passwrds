@@ -10,21 +10,6 @@ public class PasswordDAL
     private static String ruta = "C:/GPWFLS/infopw.bin";
     private static EncriptDAL encript = new EncriptDAL();
     
-    public boolean Actualizar(Password password) throws Exception
-    {
-        boolean retVal = false;
-        for (Password p: listaPW)
-        {
-            if (p.GetId()==password.GetId())
-            {
-                password.SetInformacion(encript.HashContra(password.GetInformacion()));
-                p = password;
-                retVal = true;
-                Escribir(); 
-            }
-        }
-        return retVal;
-    }
     public ArrayList<Password> BuscarTodos(int id)
     {
         ArrayList<Password> retVal = new ArrayList<>();
@@ -38,6 +23,7 @@ public class PasswordDAL
     public void Ingresar(Password password) throws Exception
     {
         String contra = encript.HashContra(password.GetInformacion());
+        password.SetId(listaPW.size()+1);
         password.SetInformacion(contra);
         listaPW.add(password);
         Escribir();   
