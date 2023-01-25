@@ -62,7 +62,20 @@ public class PasswordDAL
     public void Ingresar(Password password) throws Exception
     {
         String contra = encript.HashContra(password.GetInformacion());
-        password.SetId(listaPW.size()+1);
+        boolean control = false;
+        int idAsignado = listaPW.size()+1;
+        while (!control)
+        {
+            control = true;
+            for (Password p: listaPW)
+            {
+                if (p.GetId()==idAsignado)   
+                    control = false;
+                    idAsignado++;
+                    break;
+            }
+        }
+        password.SetId(idAsignado);
         password.SetInformacion(contra);
         listaPW.add(password);
         Escribir();   
