@@ -5,6 +5,11 @@ import java.util.ArrayList;
 
 public class PasswordBL 
 {
+    public Password Buscar(int id)
+    {
+        PasswordDAL dal = new PasswordDAL();
+        return dal.Buscar(id);
+    }
     public boolean Actualizar(Password password) throws Exception
     {
         PasswordDAL dal = new PasswordDAL();

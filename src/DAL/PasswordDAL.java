@@ -10,6 +10,16 @@ public class PasswordDAL
     private final static String ruta = "C:/GPWFLS/infopw.bin";
     private static EncriptDAL encript = new EncriptDAL();
     
+    public Password Buscar(int id)
+    {
+        Password retVal = new Password();
+        for (Password p: listaPW)
+        {
+            if (p.GetId()==id)    
+                retVal = p;
+        }
+        return retVal; 
+    }
     public boolean Actualizar(Password password) throws Exception
     {
         boolean retVal = false;

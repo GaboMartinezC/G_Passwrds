@@ -20,6 +20,7 @@ public class Actualizar extends JFrame implements ActionListener
     private JPasswordField jPasswordField2;
     private JTextField jTextField1;
     private PasswordBL bl = new PasswordBL();
+    private Password p = bl.Buscar(id);
     
     public Actualizar()
     {
@@ -59,10 +60,11 @@ public class Actualizar extends JFrame implements ActionListener
         jLabel5.setText("Confirma la contraseña");
 
         jTextField1.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jTextField1.setText(p.GetDescripcionServicio());
         jTextField1.addActionListener(this);
 
         jPasswordField1.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-
+            
         jPasswordField2.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
 
         jButton1.setBackground(new java.awt.Color(255, 153, 153));
