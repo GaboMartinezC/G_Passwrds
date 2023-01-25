@@ -6,8 +6,8 @@ import java.util.ArrayList;
 public class UsuarioDAL 
 {
     private static ArrayList<Usuario> listaUS = new ArrayList<>();
-    private String rutaU = "C:/GPWFLS/logged.bin";
-    private String ruta = "C:/GPWFLS/infoUsuario.bin";
+    private final String rutaU = "C:/GPWFLS/logged.bin";
+    private final String ruta = "C:/GPWFLS/infoUsuario.bin";
     
     private Usuario PrivLoged() throws Exception
     {
@@ -16,14 +16,6 @@ public class UsuarioDAL
         usuario = (Usuario) leyendoArchivo.readObject();
         leyendoArchivo.close();
         return usuario;
-    }
-    public int IdUsuario() throws Exception
-    {
-        return this.PrivLoged().GetId();
-    }
-    public Usuario Loged() throws Exception
-    {
-        return this.PrivLoged();
     }
     public void Unlog() throws Exception
     {
@@ -83,6 +75,14 @@ public class UsuarioDAL
             Escribir();
         }
         return retVal;
+    }
+    public int IdUsuario() throws Exception
+    {
+        return this.PrivLoged().GetId();
+    }
+    public Usuario Loged() throws Exception
+    {
+        return this.PrivLoged();
     }
     private void Escribir() throws Exception
     {

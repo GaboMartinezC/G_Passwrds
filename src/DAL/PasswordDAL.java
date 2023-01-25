@@ -6,8 +6,8 @@ import java.io.*;
 public class PasswordDAL 
 {
     private static ArrayList<Password> listaPW = new ArrayList<>();
-    private static String rutaDir = "C:/GPWFLS";
-    private static String ruta = "C:/GPWFLS/infopw.bin";
+    private final static String rutaDir = "C:/GPWFLS";
+    private final static String ruta = "C:/GPWFLS/infopw.bin";
     private static EncriptDAL encript = new EncriptDAL();
     
     public boolean Actualizar(Password password) throws Exception
